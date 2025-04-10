@@ -38,6 +38,11 @@
                             <a class="nav-link" asp-area="" asp-page="/App/Index">
                                 <i class="fas fa-mobile-alt me-1"></i> App
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Admin/Index">
+                                <i class="fas fa-cog me-1"></i> Admin
+                            </a>
                         </li>                                                  
                     </ul>
                     <div class="d-flex">
@@ -46,7 +51,12 @@
                         </a>
                         <a class="nav-link position-relative" asp-area="" asp-page="/Cart">
                             <i class="fas fa-shopping-cart fs-5"></i>
-                            <span class="cart-badge">0</span>
+                            @{
+                                var cartService = Context.RequestServices.GetService<ausemartweb.Services.ICartService>();
+                                var cartId = Context.Session.GetCartId();
+                                var itemCount = cartService?.GetCart(cartId).Items.Count ?? 0;
+                            }
+                            <span class="cart-badge">@itemCount</span>
                         </a>
                     </div>
                 </div>

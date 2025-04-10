@@ -1,8 +1,75 @@
-# Sample Aus-E-Mart Web App from cloudlee
+# Aus-E-Mart Web Store from Cloudlee
 
-This is a basic web app built using the dotnet webapp template, to help demonstrate content in various Azure courses at [learn.cloudlee.io](https://learn.cloudlee.io). 
+This is an e-commerce web application built using ASP.NET Core Razor Pages, designed to demonstrate a functional online store for Australian souvenirs. The application was originally created for Azure courses at [learn.cloudlee.io](https://learn.cloudlee.io).
 
-## Usage
+## Features
 
-Refer to the course lessons for more information on how to use this sample web app.
+- Browse products by category
+- Search and filter products
+- Shopping cart with session storage
+- Admin dashboard for product management
+- Responsive design for all devices
+- Order processing simulation
+
+## Technologies Used
+
+- ASP.NET Core 6.0
+- Razor Pages
+- Bootstrap 5
+- Session-based data storage
+- C# in-memory repositories
+
+## Getting Started
+
+### Prerequisites
+
+- .NET 6.0 SDK or later
+- Visual Studio 2022, Visual Studio Code, or any preferred IDE
+
+### Running the Application
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Run the application:
+
+```bash
+dotnet restore
+dotnet run
+```
+
+4. Open your browser and navigate to `https://localhost:7034` or `http://localhost:5034`
+
+## Project Structure
+
+- `Models/` - Contains data models (Product, Cart, CartItem)
+- `Services/` - Contains service classes for product and cart management
+- `Pages/` - Razor Pages for the frontend
+  - `Admin/` - Admin dashboard pages
+  - `Shared/` - Shared layout and partial views
+- `wwwroot/` - Static assets (CSS, JS, images)
+
+## Extending the Application
+
+### Adding Database Persistence
+
+To add database persistence:
+
+1. Add Entity Framework Core packages
+2. Create a database context
+3. Update the service implementations to use EF Core
+4. Configure the connection string in `appsettings.json`
+5. Migrate and update the database
+
+### Adding User Authentication
+
+To add user authentication:
+
+1. Add ASP.NET Core Identity
+2. Configure Identity in `Program.cs`
+3. Create login/register pages
+4. Add authorization attributes to admin pages
+
+## License
+
+This project is licensed under the MIT License
 

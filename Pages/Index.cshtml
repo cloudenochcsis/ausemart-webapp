@@ -4,6 +4,14 @@
     ViewData["Title"] = "Home";
 }
 
+@if (TempData["OrderSuccess"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> @TempData["OrderSuccess"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <!-- Hero Section -->
 <div class="hero-section">
     <div class="container">

@@ -18,100 +18,78 @@
             <!-- Cart Items -->
             <div class="card mb-4">
                 <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <h3 class="mb-0">Cart Items (3)</h3>
-                    <button class="btn btn-outline-secondary btn-sm">
-                        <i class="fas fa-trash-alt me-1"></i> Clear Cart
-                    </button>
+                    <h3 class="mb-0">Cart Items (@Model.UserCart.Items.Count)</h3>
+                    @if (Model.UserCart.Items.Any())
+                    {
+                        <form method="post" asp-page-handler="ClearCart">
+                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-trash-alt me-1"></i> Clear Cart
+                            </button>
+                        </form>
+                    }
                 </div>
                 <div class="card-body p-0">
-                    <!-- Cart Item 1 -->
-                    <div class="d-flex p-3 border-bottom">
-                        <div class="flex-shrink-0">
-                            <img src="/images/kangaroo.jpg" alt="Product" class="rounded" width="100" height="100" style="object-fit: cover;">
+                    @if (!Model.UserCart.Items.Any())
+                    {
+                        <div class="p-5 text-center">
+                            <p class="mb-3">Your cart is empty</p>
+                            <a href="/Products" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart me-2"></i> Browse Products
+                            </a>
                         </div>
-                        <div class="flex-grow-1 ms-3 d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <h5>Kangaroo Plush Toy</h5>
-                                <h5 class="text-primary">$29.99</h5>
-                            </div>
-                            <p class="text-muted mb-2">Size: Medium | Color: Brown</p>
-                            <div class="d-flex mt-auto justify-content-between align-items-center">
-                                <div class="input-group input-group-sm" style="width: 120px;">
-                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                    <input type="text" class="form-control text-center" value="1">
-                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.UserCart.Items)
+                        {
+                            <div class="d-flex p-3 @(item != Model.UserCart.Items.Last() ? "border-bottom" : "")">
+                                <div class="flex-shrink-0">
+                                    <img src="@item.ImageUrl" alt="@item.ProductName" class="rounded" width="100" height="100" style="object-fit: cover;">
                                 </div>
-                                <div>
-                                    <button class="btn btn-sm text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cart Item 2 -->
-                    <div class="d-flex p-3 border-bottom">
-                        <div class="flex-shrink-0">
-                            <img src="/images/koala.jpg" alt="Product" class="rounded" width="100" height="100" style="object-fit: cover;">
-                        </div>
-                        <div class="flex-grow-1 ms-3 d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <h5>Koala Keychain</h5>
-                                <h5 class="text-primary">$12.99</h5>
-                            </div>
-                            <p class="text-muted mb-2">Material: Metal | Type: Keyring</p>
-                            <div class="d-flex mt-auto justify-content-between align-items-center">
-                                <div class="input-group input-group-sm" style="width: 120px;">
-                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                    <input type="text" class="form-control text-center" value="2">
-                                    <button class="btn btn-outline-secondary" type="button">+</button>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cart Item 3 -->
-                    <div class="d-flex p-3">
-                        <div class="flex-shrink-0">
-                            <img src="/images/spider.jpg" alt="Product" class="rounded" width="100" height="100" style="object-fit: cover;">
-                        </div>
-                        <div class="flex-grow-1 ms-3 d-flex flex-column">
-                            <div class="d-flex justify-content-between">
-                                <h5>Spider Fridge Magnet</h5>
-                                <h5 class="text-primary">$8.99</h5>
-                            </div>
-                            <p class="text-muted mb-2">Material: Resin | Size: Small</p>
-                            <div class="d-flex mt-auto justify-content-between align-items-center">
-                                <div class="input-group input-group-sm" style="width: 120px;">
-                                    <button class="btn btn-outline-secondary" type="button">-</button>
-                                    <input type="text" class="form-control text-center" value="3">
-                                    <button class="btn btn-outline-secondary" type="button">+</button>
-                                </div>
-                                <div>
-                                    <button class="btn btn-sm text-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                <div class="flex-grow-1 ms-3 d-flex flex-column">
+                                    <div class="d-flex justify-content-between">
+                                        <h5>@item.ProductName</h5>
+                                        <h5 class="text-primary">$@item.Price.ToString("0.00")</h5>
+                                    </div>
+                                    @if (item.Attributes != null && item.Attributes.Any())
+                                    {
+                                        <p class="text-muted mb-2">
+                                            @string.Join(" | ", item.Attributes.Select(a => $"{a.Key}: {a.Value}"))
+                                        </p>
+                                    }
+                                    <div class="d-flex mt-auto justify-content-between align-items-center">
+                                        <form id="update-form-@item.ProductId" method="post" asp-page-handler="UpdateItem" class="d-flex align-items-center">
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <div class="input-group input-group-sm" style="width: 120px;">
+                                                <button class="btn btn-outline-secondary" type="button" onclick="decrementQuantity(@item.ProductId)">-</button>
+                                                <input type="number" id="quantity-@item.ProductId" name="quantity" class="form-control text-center" value="@item.Quantity" min="1" max="99">
+                                                <button class="btn btn-outline-secondary" type="button" onclick="incrementQuantity(@item.ProductId)">+</button>
+                                            </div>
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary ms-2" title="Update">
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+                                        </form>
+                                        <div>
+                                            <form method="post" asp-page-handler="RemoveItem">
+                                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                                <button type="submit" class="btn btn-sm text-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
             </div>
 
             <!-- Continue Shopping -->
-            <div class="d-flex justify-content-between mb-4">
+            <div class="d-flex justify-content-start mb-4">
                 <a href="/Products" class="btn btn-outline-primary">
                     <i class="fas fa-arrow-left me-2"></i> Continue Shopping
                 </a>
-                <button class="btn btn-outline-success">
-                    <i class="fas fa-sync-alt me-2"></i> Update Cart
-                </button>
             </div>
         </div>
 
@@ -124,24 +102,26 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal:</span>
-                        <span>$64.96</span>
+                        <span>$@Model.UserCart.Subtotal.ToString("0.00")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Shipping:</span>
-                        <span>$5.99</span>
+                        <span>$@Model.UserCart.ShippingCost.ToString("0.00")</span>
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <span>Tax:</span>
-                        <span>$7.09</span>
+                        <span>$@Model.UserCart.Tax.ToString("0.00")</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mb-4 fw-bold">
                         <span>Total:</span>
-                        <span class="text-primary">$78.04</span>
+                        <span class="text-primary">$@Model.UserCart.Total.ToString("0.00")</span>
                     </div>
-                    <button class="btn btn-primary w-100 mb-3">
-                        <i class="fas fa-credit-card me-2"></i> Proceed to Checkout
-                    </button>
+                    <form method="post" asp-page-handler="Checkout">
+                        <button type="submit" class="btn btn-primary w-100 mb-3" @(Model.UserCart.Items.Any() ? "" : "disabled")>
+                            <i class="fas fa-credit-card me-2"></i> Proceed to Checkout
+                        </button>
+                    </form>
                     <div class="text-center mt-3">
                         <div class="text-muted mb-2">We Accept</div>
                         <div class="d-flex justify-content-center gap-2">
@@ -189,5 +169,22 @@
                 observer.observe(element);
             });
         });
+        
+        // Quantity increment/decrement functions
+        function incrementQuantity(productId) {
+            const input = document.getElementById(`quantity-${productId}`);
+            const currentValue = parseInt(input.value);
+            if (currentValue < 99) {
+                input.value = currentValue + 1;
+            }
+        }
+        
+        function decrementQuantity(productId) {
+            const input = document.getElementById(`quantity-${productId}`);
+            const currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
     </script>
 }
