@@ -28,6 +28,8 @@ This is an e-commerce web application built using ASP.NET Core Razor Pages, desi
 
 ### Running the Application
 
+#### Option 1: Using .NET CLI
+
 1. Clone the repository
 2. Navigate to the project directory
 3. Run the application:
@@ -38,6 +40,23 @@ dotnet run
 ```
 
 4. Open your browser and navigate to `https://localhost:7034` or `http://localhost:5034`
+
+#### Option 2: Using Docker Compose
+
+1. Clone the repository
+2. Navigate to the project directory
+3. Build and run using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+4. Open your browser and navigate to `http://localhost:8080`
+5. To stop the containers, press Ctrl+C or run:
+
+```bash
+docker-compose down
+```
 
 ## Project Structure
 
