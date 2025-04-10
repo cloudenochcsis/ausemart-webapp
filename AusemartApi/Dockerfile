@@ -4,10 +4,9 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["AusemartApi/AusemartApi.csproj", "AusemartApi/"]
-RUN dotnet restore "AusemartApi/AusemartApi.csproj"
+COPY ["AusemartApi.csproj", "./"]
+RUN dotnet restore "./AusemartApi.csproj"
 COPY . .
-WORKDIR "/src/AusemartApi"
 RUN dotnet build "AusemartApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
