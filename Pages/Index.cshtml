@@ -1,14 +1,72 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">G'day and welcome to Aus-E-Mart!</h1>
-    <p>You can find all your favourite Aussie products and more.</p>
-    <br/>
-    <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-koala-animal-flaticons-lineal-color-flat-icons-2.png" width="64" alt="Koala" />
-    <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-platypus-animal-flaticons-lineal-color-flat-icons-2.png" width="64" alt="Platypus" />
-    <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/null/external-snake-animal-flaticons-lineal-color-flat-icons.png" width="64" alt="Snake" />
+<div class="hero-section">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+            <h1 class="display-4 mb-3">G'day and welcome to Aus-E-Mart!</h1>
+            <p class="lead mb-4">Your trusted source for authentic Australian products, delivered with a smile from Down Under.</p>
+            <div class="d-grid gap-2 d-md-flex">
+                <a asp-page="/Products" class="btn btn-primary btn-lg px-4 me-md-2">Shop Now</a>
+                <a asp-page="/App/Index" class="btn btn-outline-primary btn-lg px-4">Our App</a>
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block text-center mt-5 mt-md-0">
+            <img src="~/images/kangaroo.jpg" alt="Australian landscape" class="img-fluid rounded hero-image" style="max-height: 300px;" />
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12 text-center mb-4">
+        <h2>Explore Our Categories</h2>
+        <p>Browse our wide range of authentic Australian goods</p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="~/images/koala.jpg" class="card-img-top" alt="Toys">
+            <div class="card-body text-center">
+                <h3>Toys</h3>
+                <p>Aussie-inspired toys for kids of all ages</p>
+                <a asp-page="/Products" asp-route-category="Toys" class="btn btn-outline-primary">View Toys</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="~/images/kangaroo.jpg" class="card-img-top" alt="Apparel">
+            <div class="card-body text-center">
+                <h3>Apparel</h3>
+                <p>Clothes and accessories with Australian flair</p>
+                <a asp-page="/Products" asp-route-category="Apparel" class="btn btn-outline-primary">View Apparel</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="~/images/spider.jpg" class="card-img-top" alt="Accessories">
+            <div class="card-body text-center">
+                <h3>Accessories</h3>
+                <p>Unique Australian accessories for your collection</p>
+                <a asp-page="/Products" asp-route-category="Accessories" class="btn btn-outline-primary">View Accessories</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 mb-4">
+    <div class="col-12 text-center">
+        <h2>Proudly Australian</h2>
+        <div class="aussie-icons mt-4">
+            <img src="~/images/koala.jpg" width="64" height="64" alt="Koala" class="rounded-circle" />
+            <img src="~/images/kangaroo.jpg" width="64" height="64" alt="Kangaroo" class="rounded-circle" />
+            <img src="~/images/spider.jpg" width="64" height="64" alt="Spider" class="rounded-circle" />
+        </div>
+    </div>
 </div>

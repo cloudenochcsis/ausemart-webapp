@@ -1,5 +1,20 @@
+/* Australian-themed color palette */
+:root {
+  --aussie-ochre: #DA9100;
+  --aussie-green: #006747;
+  --aussie-blue: #00408E;
+  --aussie-red: #E4002B;
+  --aussie-gold: #FFD100;
+  --aussie-sand: #F2E9D8;
+  --aussie-eucalyptus: #AEBFAF;
+  --dark: #212529;
+  --light: #F8F9FA;
+}
+
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,11 +23,321 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
   margin-bottom: 60px;
+  background-color: var(--light);
+  color: var(--dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header & Navigation */
+.navbar {
+  background-color: var(--aussie-sand) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: var(--aussie-green) !important;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--aussie-ochre) !important;
+}
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--dark) !important;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.25rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--aussie-ochre);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--aussie-green) !important;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background-color: var(--aussie-green);
+}
+
+/* Cart Button */
+.btn-cart {
+  background-color: var(--aussie-green);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.btn-cart:hover {
+  background-color: var(--aussie-blue);
+  transform: translateY(-2px);
+}
+
+.btn-cart svg {
+  margin-right: 6px;
+}
+
+.cart-count {
+  background-color: var(--aussie-red);
+  color: white;
+  border-radius: 50%;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.75rem;
+  margin-left: 5px;
+}
+
+/* Page Headers */
+h1, h2, h3, h4, h5 {
+  color: var(--aussie-blue);
+  margin-bottom: 1rem;
+}
+
+.display-4 {
+  font-weight: 700;
+  color: var(--aussie-green);
+}
+
+/* Main Content Container */
+.container {
+  padding: 1.5rem 1rem;
+}
+
+/* Cards */
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-weight: 600;
+  color: var(--aussie-blue);
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.card-price {
+  font-weight: 700;
+  color: var(--aussie-ochre);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stock-info {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.in-stock {
+  color: var(--aussie-green);
+}
+
+.out-of-stock {
+  color: var(--aussie-red);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--aussie-green);
+  border-color: var(--aussie-green);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #005238;
+  border-color: #005238;
+}
+
+.btn-outline-primary {
+  color: var(--aussie-green);
+  border-color: var(--aussie-green);
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+  background-color: var(--aussie-green);
+  border-color: var(--aussie-green);
+}
+
+.btn-success {
+  background-color: var(--aussie-green);
+  border-color: var(--aussie-green);
+}
+
+.btn-success:hover, .btn-success:focus {
+  background-color: #005238;
+  border-color: #005238;
+}
+
+.btn-danger {
+  background-color: var(--aussie-red);
+  border-color: var(--aussie-red);
+}
+
+.btn-danger:hover, .btn-danger:focus {
+  background-color: #c50026;
+  border-color: #c50026;
+}
+
+/* Home Page */
+.hero-section {
+  background-color: var(--aussie-sand);
+  padding: 3rem 0;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.hero-logo {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.aussie-icons {
+  margin: 2rem 0;
+}
+
+.aussie-icons img {
+  margin: 0 12px;
+  transition: transform 0.3s ease;
+}
+
+.aussie-icons img:hover {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Product Filters */
+.filter-bar {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Cart Page */
+.cart-table {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cart-table th {
+  background-color: var(--aussie-sand);
+  color: var(--aussie-blue);
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.cart-product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
+
+.cart-quantity-input {
+  width: 70px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 0.25rem 0.5rem;
+}
+
+.cart-footer {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--aussie-blue);
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+  background-color: var(--aussie-blue);
+  color: white !important;
+}
+
+.footer a {
+  color: var(--aussie-gold);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .card-img-top {
+    height: 180px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  .aussie-icons img {
+    width: 48px;
+    margin: 0 8px;
+  }
 }
