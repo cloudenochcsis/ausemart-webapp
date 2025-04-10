@@ -5,11 +5,43 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Come check out our products! </p>
-<br/>
-<ul class="list-group">
-    <li class="list-group-item"><img src="/images/kangaroo.jpg" width="100"/> Kangaroo Products </li>
-    <li class="list-group-item"><img src="/images/koala.jpg" width="100"/> Koala Products </li>
-    <li class="list-group-item"><img src="/images/spider.jpg" width="100"/> Spider Products </li>
-</ul>
+<p>Check out our authentic Australian products!</p>
+
+<div class="row mb-3">
+    <div class="col">
+        <div class="btn-group" role="group">
+            <a asp-page="./Products" class="btn btn-outline-primary">All Products</a>
+            <a asp-page="./Products" asp-route-category="Toys" class="btn btn-outline-primary">Toys</a>
+            <a asp-page="./Products" asp-route-category="Apparel" class="btn btn-outline-primary">Apparel</a>
+            <a asp-page="./Products" asp-route-category="Accessories" class="btn btn-outline-primary">Accessories</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="card-text"><strong>$@product.Price.ToString("F2")</strong></p>
+                    <p class="card-text text-muted">@(product.StockQuantity > 0 ? $"In Stock: {product.StockQuantity}" : "Out of Stock")</p>
+                    
+                    <form method="post" asp-page-handler="AddToCart">
+                        <input type="hidden" name="productId" value="@product.Id" />
+                        <div class="input-group mb-3">
+                            <input type="number" name="quantity" class="form-control" value="1" min="1" max="@product.StockQuantity" />
+                            <button class="btn btn-primary" type="submit" @(product.StockQuantity <= 0 ? "disabled" : "")>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
