@@ -1,14 +1,13 @@
 /* Australian-themed color palette */
 :root {
-  --aussie-ochre: #DA9100;
-  --aussie-green: #006747;
-  --aussie-blue: #00408E;
-  --aussie-red: #E4002B;
-  --aussie-gold: #FFD100;
-  --aussie-sand: #F2E9D8;
-  --aussie-eucalyptus: #AEBFAF;
-  --dark: #212529;
-  --light: #F8F9FA;
+  --aussie-green: #00843D;
+  --aussie-gold: #FFCD00;
+  --aussie-blue: #0072B2;
+  --aussie-red: #E5002B;
+  --neutral-dark: #333333;
+  --neutral-light: #F5F5F5;
+  --dark: var(--neutral-dark);
+  --light: var(--neutral-light);
 }
 
 html {
@@ -25,25 +24,25 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color: var(--light);
-  color: var(--dark);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Header & Navigation */
 .navbar {
-  background-color: var(--aussie-sand) !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: var(--aussie-green) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .navbar-brand {
   font-weight: 700;
-  color: var(--aussie-green) !important;
+  color: var(--aussie-gold) !important;
   transition: all 0.3s ease;
 }
 
 .navbar-brand:hover {
-  color: var(--aussie-ochre) !important;
+  color: white !important;
 }
 
 .navbar-brand img {
@@ -52,7 +51,7 @@ body {
 
 .nav-link {
   font-weight: 500;
-  color: var(--dark) !important;
+  color: white !important;
   position: relative;
   padding: 0.5rem 1rem !important;
   margin: 0 0.25rem;
@@ -65,7 +64,7 @@ body {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--aussie-ochre);
+  background-color: var(--aussie-gold);
   transition: width 0.3s ease;
 }
 
@@ -74,17 +73,17 @@ body {
 }
 
 .nav-link.active {
-  color: var(--aussie-green) !important;
+  color: var(--aussie-gold) !important;
 }
 
 .nav-link.active::after {
   width: 100%;
-  background-color: var(--aussie-green);
+  background-color: var(--aussie-gold);
 }
 
 /* Cart Button */
 .btn-cart {
-  background-color: var(--aussie-green);
+  background-color: var(--aussie-blue);
   color: white;
   border: none;
   border-radius: 4px;
@@ -95,7 +94,8 @@ body {
 }
 
 .btn-cart:hover {
-  background-color: var(--aussie-blue);
+  background-color: var(--aussie-gold);
+  color: var(--neutral-dark);
   transform: translateY(-2px);
 }
 
@@ -110,6 +110,7 @@ body {
   padding: 0.15rem 0.4rem;
   font-size: 0.75rem;
   margin-left: 5px;
+  font-weight: bold;
 }
 
 /* Page Headers */
@@ -121,6 +122,7 @@ h1, h2, h3, h4, h5 {
 .display-4 {
   font-weight: 700;
   color: var(--aussie-green);
+  letter-spacing: -0.5px;
 }
 
 /* Main Content Container */
@@ -135,11 +137,13 @@ h1, h2, h3, h4, h5 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
+  background-color: white;
 }
 
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  border-top: 3px solid var(--aussie-gold);
 }
 
 .card-img-top {
@@ -155,6 +159,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
   color: var(--aussie-blue);
   margin-bottom: 0.75rem;
+  font-size: 1.2rem;
 }
 
 .card-text {
@@ -164,8 +169,8 @@ h1, h2, h3, h4, h5 {
 
 .card-price {
   font-weight: 700;
-  color: var(--aussie-ochre);
-  font-size: 1.1rem;
+  color: var(--aussie-green);
+  font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
@@ -176,60 +181,75 @@ h1, h2, h3, h4, h5 {
 
 .in-stock {
   color: var(--aussie-green);
+  font-weight: 500;
 }
 
 .out-of-stock {
   color: var(--aussie-red);
+  font-weight: 500;
 }
 
 /* Buttons */
 .btn-primary {
   background-color: var(--aussie-green);
   border-color: var(--aussie-green);
+  font-weight: 500;
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-color: #005238;
-  border-color: #005238;
+  background-color: #006b32;
+  border-color: #006b32;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .btn-outline-primary {
   color: var(--aussie-green);
   border-color: var(--aussie-green);
+  font-weight: 500;
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus {
   background-color: var(--aussie-green);
   border-color: var(--aussie-green);
+  transform: translateY(-1px);
 }
 
 .btn-success {
   background-color: var(--aussie-green);
   border-color: var(--aussie-green);
+  font-weight: 500;
 }
 
 .btn-success:hover, .btn-success:focus {
-  background-color: #005238;
-  border-color: #005238;
+  background-color: #006b32;
+  border-color: #006b32;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .btn-danger {
   background-color: var(--aussie-red);
   border-color: var(--aussie-red);
+  font-weight: 500;
 }
 
 .btn-danger:hover, .btn-danger:focus {
   background-color: #c50026;
   border-color: #c50026;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Home Page */
 .hero-section {
-  background-color: var(--aussie-sand);
+  background-color: var(--aussie-blue);
   padding: 3rem 0;
   border-radius: 8px;
   margin-bottom: 2rem;
   text-align: center;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
 .hero-logo {
@@ -254,9 +274,10 @@ h1, h2, h3, h4, h5 {
 .filter-bar {
   background-color: white;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.25rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--aussie-gold);
 }
 
 /* Cart Page */
@@ -264,14 +285,15 @@ h1, h2, h3, h4, h5 {
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .cart-table th {
-  background-color: var(--aussie-sand);
-  color: var(--aussie-blue);
+  background-color: var(--aussie-green);
+  color: white;
   font-weight: 600;
   padding: 1rem;
+  letter-spacing: 0.5px;
 }
 
 .cart-product-image {
@@ -309,17 +331,22 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
-  background-color: var(--aussie-blue);
+  background-color: var(--neutral-dark);
   color: white !important;
+  border-top: 4px solid var(--aussie-green);
 }
 
 .footer a {
   color: var(--aussie-gold);
   text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .footer a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: white;
+  transform: translateX(2px);
 }
 
 /* Responsive Design */
