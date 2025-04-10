@@ -25,6 +25,8 @@ public class ProductsModel : PageModel
     
     [BindProperty(SupportsGet = true)]
     public string? Category { get; set; }
+    
+    public string? CurrentCategory => Category;
 
     public void OnGet()
     {
