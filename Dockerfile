@@ -3,7 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-stage
 WORKDIR /ausemartweb
 COPY . ./
 RUN dotnet restore
-RUN dotnet publish -c Release -o out
+# Build just the web project, not the API project
+RUN dotnet publish ausemartweb.csproj -c Release -o out
 
 # We use this stage to serve the app
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
